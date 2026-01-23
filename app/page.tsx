@@ -145,12 +145,12 @@ export default function Home() {
                         >
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 {/* Primary CTA with Glow */}
-                                <button className="group relative px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-300 overflow-hidden">
+                                <a href="#batch" className="group relative px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-300 overflow-hidden inline-flex items-center">
                                     <span className="relative z-10 flex items-center gap-2">
                                         Join Beta Waitlist
                                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </span>
-                                </button>
+                                </a>
 
                                 <a
                                     href={SURVEY_URL}
@@ -291,7 +291,7 @@ export default function Home() {
             </div>
 
             {/* JOIN BATCH FORM */}
-            <section id="batch" className="relative py-24 bg-slate-900 overflow-hidden">
+            <section id="batch" className="relative py-24 bg-slate-900 overflow-hidden scroll-mt-28">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-900/30 via-slate-900 to-slate-900 pointer-events-none" />
                 <div className="container mx-auto px-4 max-w-5xl grid md:grid-cols-2 gap-16 items-center relative z-10">
                     <div>
