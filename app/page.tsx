@@ -306,42 +306,7 @@ export default function Home() {
                         </div>
                     </div>
 
-                    <div className="bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl">
-                        <h3 className="text-xl font-semibold mb-6 text-white">Request Invitation</h3>
-                        <form className="space-y-4">
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Full Name</label>
-                                <input type="text" className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white placeholder-slate-600" placeholder="Ex. Rahul Varma" />
-                            </div>
-                            <div>
-                                <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Email <span className="text-red-400">*</span></label>
-                                <input type="email" required className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white placeholder-slate-600" placeholder="rahul@example.com" />
-                            </div>
-                            <div className="grid grid-cols-2 gap-4">
-                                <div>
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Target Year</label>
-                                    <select className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white appearance-none cursor-pointer">
-                                        <option className="bg-slate-900">2026</option>
-                                        <option className="bg-slate-900">2027</option>
-                                        <option className="bg-slate-900">2028</option>
-                                    </select>
-                                </div>
-                                <div>
-                                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Struggle</label>
-                                    <select className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white appearance-none cursor-pointer">
-                                        <option className="bg-slate-900">Concepts</option>
-                                        <option className="bg-slate-900">Practice</option>
-                                        <option className="bg-slate-900">Revision</option>
-                                        <option className="bg-slate-900">Mocks</option>
-                                        <option className="bg-slate-900">Time Mgmt</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <button className="w-full bg-white text-slate-900 hover:bg-blue-50 font-bold py-4 rounded-xl mt-4 transition-colors">
-                                Join Beta
-                            </button>
-                        </form>
-                    </div>
+                    <WaitlistForm />
                 </div>
             </section>
 
@@ -385,6 +350,131 @@ export default function Home() {
                 </div>
             </footer>
         </main >
+    );
+}
+
+function WaitlistForm() {
+    const [status, setStatus] = useState<"idle" | "saving" | "success" | "error">("idle");
+    const formRef = useRef<HTMLFormElement>(null);
+
+    async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
+        event.preventDefault();
+
+        const formData = new FormData(event.currentTarget);
+        const data = {
+            name: formData.get("name") as string,
+            email: formData.get("email") as string,
+            targetYear: formData.get("targetYear") as string,
+            struggle: formData.get("struggle") as string,
+        };
+
+        if (!data.email) {
+            setStatus("error");
+            return;
+        }
+
+        setStatus("saving");
+
+        try {
+            const response = await fetch("/api/join-waitlist", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                setStatus("success");
+                formRef.current?.reset();
+
+                // Reset success state after 3 seconds to allow new submissions if needed
+                setTimeout(() => setStatus("idle"), 5000);
+            } else {
+                setStatus("error");
+            }
+        } catch (e) {
+            console.error(e);
+            setStatus("error");
+        }
+    }
+
+    return (
+        <div className="bg-white/10 backdrop-blur-xl p-8 rounded-3xl border border-white/10 shadow-2xl">
+            <h3 className="text-xl font-semibold mb-6 text-white">Join the Beta</h3>
+            <form ref={formRef} onSubmit={onSubmit} className="space-y-4">
+                <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Full Name</label>
+                    <input
+                        name="name"
+                        type="text"
+                        className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white placeholder-slate-600"
+                        placeholder="Ex. Rahul Varma"
+                    />
+                </div>
+                <div>
+                    <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Email <span className="text-red-400">*</span></label>
+                    <input
+                        name="email"
+                        type="email"
+                        required
+                        className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white placeholder-slate-600"
+                        placeholder="rahul@example.com"
+                    />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                    <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Target Year</label>
+                        <div className="relative">
+                            <select name="targetYear" className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white appearance-none cursor-pointer">
+                                <option className="bg-slate-900" value="2027">2027</option>
+                                <option className="bg-slate-900" value="2028">2028</option>
+                                <option className="bg-slate-900" value="2029">2029</option>
+                            </select>
+                            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                        </div>
+                    </div>
+                    <div>
+                        <label className="block text-xs font-bold uppercase tracking-widest text-slate-400 mb-2">Struggle</label>
+                        <div className="relative">
+                            <select name="struggle" className="w-full bg-slate-950/50 border border-white/10 rounded-xl px-4 py-3 focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all font-medium text-white appearance-none cursor-pointer">
+                                <option className="bg-slate-900" value="Concepts">Concepts</option>
+                                <option className="bg-slate-900" value="Practice">Practice</option>
+                                <option className="bg-slate-900" value="Revision">Revision</option>
+                                <option className="bg-slate-900" value="Mocks">Mocks</option>
+                                <option className="bg-slate-900" value="Time Mgmt">Time Mgmt</option>
+                            </select>
+                            <ChevronDown className="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-500 pointer-events-none" />
+                        </div>
+                    </div>
+                </div>
+
+                <button
+                    disabled={status === "saving" || status === "success"}
+                    className={clsx(
+                        "w-full font-bold py-4 rounded-xl mt-4 transition-all duration-300 flex items-center justify-center gap-2",
+                        status === "success" ? "bg-green-500 text-white" :
+                            status === "error" ? "bg-red-500 text-white" :
+                                "bg-white text-slate-900 hover:bg-blue-50"
+                    )}
+                >
+                    {status === "saving" && (
+                        <>
+                            <svg className="animate-spin h-5 w-5 text-slate-900" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                            Saving...
+                        </>
+                    )}
+                    {status === "success" && (
+                        <>Saved ✅</>
+                    )}
+                    {status === "error" && "Something went wrong. Try again."}
+                    {status === "idle" && "Join Beta"}
+                </button>
+            </form>
+        </div>
     );
 }
 
