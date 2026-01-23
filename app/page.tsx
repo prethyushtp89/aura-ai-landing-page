@@ -48,7 +48,7 @@ export default function Home() {
 
     const cursorGlow = useMotionTemplate`radial-gradient(600px circle at ${mouseX}px ${mouseY}px, rgba(59, 130, 246, 0.08), transparent 80%)`;
 
-    const SURVEY_URL = "https://tally.so/r/w7XjL0";
+    const SURVEY_URL = "https://forms.gle/71tTKL69wRWcibf88?utm_source=landing&utm_medium=survey_button&utm_campaign=jee2027";
 
     return (
         <main className="relative w-full overflow-x-hidden bg-white text-slate-900 scroll-smooth selection:bg-blue-100 selection:text-blue-900">
