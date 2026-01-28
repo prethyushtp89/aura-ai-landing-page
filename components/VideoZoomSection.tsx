@@ -38,7 +38,7 @@ export function VideoZoomSection() {
     return (
         <section
             ref={sectionRef}
-            className="snap-section relative bg-slate-50 overflow-hidden flex flex-col items-center justify-center py-24 border-t border-slate-200"
+            className="snap-section relative bg-slate-50 overflow-hidden flex flex-col items-center justify-center py-16 md:py-24 border-t border-slate-200"
         >
             {/* Background Aura (Parallax) - ADJUSTED FOR LIGHT MODE */}
             <motion.div

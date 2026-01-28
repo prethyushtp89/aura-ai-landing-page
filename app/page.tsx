@@ -93,7 +93,8 @@ export default function Home() {
                 <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 w-full isolate">
 
                     {/* TOP LEVEL RANK READINESS CARD - Overlay Z-50 */}
-                    <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:right-16 z-50 pointer-events-auto hidden md:block">
+                    {/* Mobile: Relative flow, visible. Desktop: Absolute positioned right */}
+                    <div className="relative mt-8 md:mt-0 md:absolute md:top-1/2 md:-translate-y-1/2 md:right-4 lg:right-16 z-50 pointer-events-auto flex justify-center md:block order-last md:order-none">
                         <RankReadinessCard />
                     </div>
 
@@ -168,22 +169,19 @@ export default function Home() {
                     </div>
 
                     {/* Hero Visual - Right Column (Rank Boost Engine) */}
-                    <div className="relative flex flex-col items-center justify-center h-full min-h-[400px] lg:min-h-[600px] mt-12 lg:mt-0">
+                    {/* Mobile: reduced height, order adjustment */}
+                    <div className="relative flex flex-col items-center justify-center h-full min-h-[350px] lg:min-h-[600px] mt-8 lg:mt-0 order-2 md:order-none w-full">
 
                         {/* The Rank Boost Arc Animation */}
                         <div className="absolute inset-0 z-10 w-full h-full">
                             <RankBoostArc />
                         </div>
-
-
-
-
                     </div>
                 </div>
             </section>
 
             {/* NEW SECTION: Why Aura feels different (Signature Strip) */}
-            <section id="differentiators" className="py-20 bg-slate-50 relative border-b border-slate-200">
+            <section id="differentiators" className="py-12 md:py-20 bg-slate-50 relative border-b border-slate-200">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
                         <div>
@@ -198,8 +196,8 @@ export default function Home() {
 
                     <div className="grid md:grid-cols-3 gap-6">
                         {/* Card 1 */}
-                        <div className="group relative p-8 rounded-3xl bg-white border border-slate-200 hover:border-red-200 hover:shadow-xl hover:shadow-red-500/5 transition-all duration-300 overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <div className="group relative p-6 md:p-8 rounded-3xl bg-white border border-slate-200 hover:border-red-200 hover:shadow-xl hover:shadow-red-500/5 transition-all duration-300 overflow-hidden">
+                            <div className="absolute top-0 right-0 p-6 md:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Target className="w-24 h-24 text-red-500" />
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 mb-2 relative z-10">Never Repeat Mistakes</h3>
@@ -209,8 +207,8 @@ export default function Home() {
                         </div>
 
                         {/* Card 2 */}
-                        <div className="group relative p-8 rounded-3xl bg-white border border-slate-200 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <div className="group relative p-6 md:p-8 rounded-3xl bg-white border border-slate-200 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-500/5 transition-all duration-300 overflow-hidden">
+                            <div className="absolute top-0 right-0 p-6 md:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Flame className="w-24 h-24 text-blue-500" />
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 mb-2 relative z-10">Daily Next-Step Plan</h3>
@@ -220,8 +218,8 @@ export default function Home() {
                         </div>
 
                         {/* Card 3 */}
-                        <div className="group relative p-8 rounded-3xl bg-white border border-slate-200 hover:border-purple-200 hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 overflow-hidden">
-                            <div className="absolute top-0 right-0 p-8 opacity-5 group-hover:opacity-10 transition-opacity">
+                        <div className="group relative p-6 md:p-8 rounded-3xl bg-white border border-slate-200 hover:border-purple-200 hover:shadow-xl hover:shadow-purple-500/5 transition-all duration-300 overflow-hidden">
+                            <div className="absolute top-0 right-0 p-6 md:p-8 opacity-5 group-hover:opacity-10 transition-opacity">
                                 <Zap className="w-24 h-24 text-purple-500" />
                             </div>
                             <h3 className="text-xl font-bold text-slate-900 mb-2 relative z-10">Rank Boost Sprints</h3>
@@ -234,7 +232,7 @@ export default function Home() {
             </section>
 
             {/* Why Aura (Outcome Based) */}
-            <section id="why" className="py-24 bg-white border-b border-slate-100">
+            <section id="why" className="py-16 md:py-24 bg-white border-b border-slate-100">
                 <div className="container mx-auto px-4 max-w-6xl">
                     <div className="text-center mb-16">
                         <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 tracking-tight">Outcome Driven.</h2>
@@ -243,7 +241,7 @@ export default function Home() {
                         </p>
                     </div>
 
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
                         {[
                             {
                                 title: "Confidence",
@@ -291,9 +289,9 @@ export default function Home() {
             </div>
 
             {/* JOIN BATCH FORM */}
-            <section id="batch" className="relative py-24 bg-slate-900 overflow-hidden scroll-mt-28">
+            <section id="batch" className="relative py-16 md:py-24 bg-slate-900 overflow-hidden scroll-mt-28">
                 <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-blue-900/30 via-slate-900 to-slate-900 pointer-events-none" />
-                <div className="container mx-auto px-4 max-w-5xl grid md:grid-cols-2 gap-16 items-center relative z-10">
+                <div className="container mx-auto px-4 max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center relative z-10">
                     <div>
                         <h2 className="text-4xl md:text-6xl font-bold mb-6 tracking-tighter text-white">Join the JEE 2027 Batch.</h2>
                         <p className="text-slate-400 text-lg md:text-xl mb-8 leading-relaxed font-light">
