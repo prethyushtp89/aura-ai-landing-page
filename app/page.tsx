@@ -8,7 +8,6 @@ import { BreathingAura } from "@/components/BreathingAura";
 
 import { AuraParticles } from "@/components/AuraParticles";
 import { RankBoostArc } from "@/components/RankBoostArc";
-import { PhoneFrame } from "@/components/PhoneFrame";
 import { RankReadinessCard } from "@/components/RankReadinessCard";
 import { KineticTeaser } from "@/components/KineticTeaser";
 import clsx from "clsx";
@@ -85,7 +84,10 @@ export default function Home() {
 
                 <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 w-full isolate">
 
-                    {/* Absolute RankReadinessCard removed - moved to right column */}
+                    {/* TOP LEVEL RANK READINESS CARD - Overlay Z-50 */}
+                    <div className="absolute top-1/2 -translate-y-1/2 right-4 lg:right-16 z-50 pointer-events-auto hidden md:block">
+                        <RankReadinessCard />
+                    </div>
 
                     {/* Hero Content */}
                     <div className="space-y-8 text-center lg:text-left">
@@ -148,20 +150,14 @@ export default function Home() {
                         </motion.div>
                     </div>
 
-                    {/* Hero Visual - Right Column (Phone Frame) */}
-                    <div className="relative flex flex-col items-center justify-center h-full min-h-[400px] lg:min-h-[600px] mt-12 lg:mt-0 perspective-[2000px]">
+                    {/* Hero Visual - Right Column (Rank Boost Engine) */}
+                    <div className="relative flex flex-col items-center justify-center h-full min-h-[400px] lg:min-h-[600px] mt-12 lg:mt-0">
 
-                        {/* The Rank Boost Arc Animation (Behind Phone) */}
-                        <div className="absolute inset-0 z-0 w-full h-full opacity-50 scale-110">
+                        {/* The Rank Boost Arc Animation */}
+                        <div className="absolute inset-0 z-10 w-full h-full">
                             <RankBoostArc />
                         </div>
 
-                        {/* PHONE MOCKUP */}
-                        <div className="relative z-10 rotate-y-[-5deg] rotate-x-[5deg] transition-transform duration-500 hover:rotate-0">
-                            <PhoneFrame>
-                                <RankReadinessCard />
-                            </PhoneFrame>
-                        </div>
                     </div>
                 </div>
             </section>
