@@ -4,12 +4,14 @@ import { motion, useScroll, useTransform, useSpring, useMotionTemplate, useMotio
 import { ArrowRight, CheckCircle2, ChevronDown, Sparkles, Brain, Zap, Clock, Shield, Flame, Target, Users, Plus, Minus } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { useTilt } from "@/hooks/useTilt";
-import { useTypewriter } from "@/hooks/useTypewriter";
 import { BreathingAura } from "@/components/BreathingAura";
-import { VideoZoomSection } from "@/components/VideoZoomSection";
+
 import { AuraParticles } from "@/components/AuraParticles";
 import { RankBoostArc } from "@/components/RankBoostArc";
 import { RankReadinessCard } from "@/components/RankReadinessCard";
+import { KineticTeaser } from "@/components/KineticTeaser";
+import { LivePrepSignal } from "@/components/LivePrepSignal";
+import { LoopingHeadline } from "@/components/LoopingHeadline";
 import clsx from "clsx";
 
 export default function Home() {
@@ -21,19 +23,6 @@ export default function Home() {
 
     // Hero Tilt Hook
     const { ref: tiltRef, handleMouseMove: handleTiltMove, handleMouseLeave: handleTiltLeave, style: tiltStyle } = useTilt<HTMLDivElement>();
-
-    // Typewriter State
-    const { displayedText: headlineText, isComplete: isHeadlineDone } = useTypewriter({
-        text: "Crack JEE 2027 the Aura Way",
-        speed: 40,
-        startDelay: 500
-    });
-
-    const { displayedText: punchlineText2 } = useTypewriter({
-        text: "Stop guessing. Start mastering.",
-        speed: 35,
-        startDelay: 2000
-    });
 
     useEffect(() => {
         if (shouldReduceMotion) return;
@@ -90,6 +79,9 @@ export default function Home() {
                     <AuraParticles />
                 </div>
 
+                {/* Live Prep Signal Widget */}
+                <LivePrepSignal />
+
                 <div className="container mx-auto px-4 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10 w-full isolate">
 
                     {/* TOP LEVEL RANK READINESS CARD - Overlay Z-50 */}
@@ -114,18 +106,11 @@ export default function Home() {
                             Coming Soon • Beta April 15
                         </motion.div>
 
-                        <div className="min-h-[180px] md:min-h-[240px] flex flex-col justify-center gap-3">
+                        <div className="min-h-[160px] md:min-h-[200px] flex flex-col justify-center gap-3">
                             {/* HEADLINE */}
                             <h1 className="text-5xl md:text-7xl font-extrabold tracking-tighter text-slate-900 leading-[1.05]">
-                                {headlineText}
-                                {!isHeadlineDone && <span className="animate-pulse text-blue-500 ml-1">|</span>}
+                                <LoopingHeadline />
                             </h1>
-
-                            {/* PUNCHLINE */}
-                            <h2 className="text-3xl md:text-5xl font-bold tracking-tight text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-cyan-600 to-purple-600 leading-[1.2] pb-2">
-                                {punchlineText2}
-                                {isHeadlineDone && punchlineText2.length < 31 && <span className="animate-pulse text-purple-600 ml-1">|</span>}
-                            </h2>
                         </div>
 
                         <motion.p
@@ -286,8 +271,11 @@ export default function Home() {
             </section>
 
             {/* Scroll Zoom Video Section (Antigravity Style) */}
-            <div id="preview">
-                <VideoZoomSection />
+            <div id="preview" className="py-24 bg-slate-50 border-b border-slate-200 flex items-center justify-center min-h-[600px] relative overflow-hidden">
+                <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-50 via-slate-50 to-slate-50 pointer-events-none" />
+                <div className="relative z-10 scale-125 md:scale-150 transform transition-transform duration-700">
+                    <KineticTeaser />
+                </div>
             </div>
 
             {/* JOIN BATCH FORM */}
