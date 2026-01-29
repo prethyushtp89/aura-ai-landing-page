@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform, useReducedMotion, useMotionTemplate } from "framer-motion";
 import { useRef } from "react";
 import { Play, Sparkles } from "lucide-react";
+import { LoopingText } from "./LoopingText";
 
 export function VideoZoomSection() {
     const sectionRef = useRef<HTMLDivElement>(null);
@@ -37,7 +38,7 @@ export function VideoZoomSection() {
     return (
         <section
             ref={sectionRef}
-            className="snap-section relative bg-slate-50 overflow-hidden flex flex-col items-center justify-center py-24 border-t border-slate-200"
+            className="snap-section relative bg-slate-50 overflow-hidden flex flex-col items-center justify-center py-16 md:py-24 border-t border-slate-200"
         >
             {/* Background Aura (Parallax) - ADJUSTED FOR LIGHT MODE */}
             <motion.div
@@ -54,12 +55,10 @@ export function VideoZoomSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.6 }}
                 >
-                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-3 tracking-tight">
+                    <h2 className="text-3xl md:text-5xl font-bold text-slate-900 mb-6 md:mb-8 tracking-tight">
                         See the Aura Way
                     </h2>
-                    <p className="text-lg md:text-xl text-slate-500 font-medium">
-                        A 20-second preview of how top ranks feel.
-                    </p>
+                    <LoopingText />
                 </motion.div>
             </div>
 
