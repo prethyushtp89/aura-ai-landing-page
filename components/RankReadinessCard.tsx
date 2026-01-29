@@ -40,9 +40,9 @@ export function RankReadinessCard() {
 
     return (
         <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
+            transition={{ duration: 0.5 }}
             className="w-[300px] bg-white/90 backdrop-blur-xl border border-white/60 rounded-3xl p-6 shadow-[0_10px_40px_-10px_rgba(59,130,246,0.15)] relative overflow-hidden group select-none cursor-default"
         >
             {/* Subtle Gradient Glow */}
