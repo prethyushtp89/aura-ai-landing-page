@@ -334,7 +334,7 @@ export default function Home() {
                     <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center text-slate-500 text-sm">
                         <div className="flex items-center gap-2 mb-4 md:mb-0">
                             <Sparkles className="w-4 h-4 text-blue-600" />
-                            <span className="font-semibold text-slate-800">Aura AI Inc.</span>
+                            <span className="font-semibold text-slate-800">AuraJEE — an Aura AI initiative</span>
                         </div>
                         <div className="flex gap-6">
                             <a href="#" className="hover:text-blue-600 transition-colors">Privacy</a>
