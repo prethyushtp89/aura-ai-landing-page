@@ -65,8 +65,8 @@ export default function Home() {
                     <a href="#preview" className="hover:text-blue-600 transition-colors">Preview</a>
                 </div>
                 <div className="flex gap-4">
-                    <a href="#batch" className="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-slate-800 transition-all shadow-lg shadow-blue-500/10">
-                        Join Waitlist
+                    <a href="/app" className="bg-slate-900 text-white px-5 py-2 rounded-full text-sm font-bold hover:bg-slate-800 transition-all shadow-lg shadow-blue-500/10">
+                        Start Free Beta
                     </a>
                 </div>
             </nav>
@@ -129,9 +129,9 @@ export default function Home() {
                         >
                             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
                                 {/* Primary CTA with Glow */}
-                                <a href="#batch" className="group relative px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-300 overflow-hidden inline-flex items-center">
+                                <a href="/app" className="group relative px-8 py-4 rounded-full bg-slate-900 text-white font-bold text-lg hover:shadow-[0_0_30px_-5px_rgba(59,130,246,0.5)] transition-all duration-300 overflow-hidden inline-flex items-center">
                                     <span className="relative z-10 flex items-center gap-2">
-                                        Join Beta Waitlist
+                                        Start Free Beta
                                         <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                                     </span>
                                 </a>
